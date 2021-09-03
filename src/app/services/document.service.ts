@@ -7,11 +7,11 @@ import { Document } from 'src/app/models/document.model';
 })
 export class DocumentService {
   currentDocument = this.socket.fromEvent<Document>('document');
-  documents = this.socket.fromEvent<String[]>('document');
+  documents = this.socket.fromEvent<string[]>('document');
 
   constructor(private socket: Socket) {}
 
-  getDocument(id: String) {
+  getDocument(id: string) {
     this.socket.emit('getDoc', id);
   }
 

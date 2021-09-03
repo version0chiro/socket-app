@@ -6,31 +6,29 @@ import { DocumentService } from 'src/app/services/document.service';
 @Component({
   selector: 'app-document-list',
   templateUrl: './document-list.component.html',
-  styleUrls: ['./document-list.component.scss'],
+  styleUrls: ['./document-list.component.scss']
 })
 export class DocumentListComponent implements OnInit, OnDestroy {
-  documents: Observable<String[]>;
-  currentDoc: String | undefined;
+  documents: Observable<string[]>;
+  currentDoc: string | undefined;
   private _docSub: Subscription;
 
-  constructor(private documentService: DocumentService) {
-    this.documents = new Observable<String[]>();
-    this.currentDoc = '';
+  constructor(private documentService: DocumentService) { 
+    this.documents = new Observable<string[]>();
+    this.currentDoc ="";
     this._docSub = new Subscription();
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.documents = this.documentService.documents;
-    this._docSub = this.documentService.currentDocument.subscribe(
-      (doc) => (this.currentDoc = doc.id)
-    );
+    this._docSub = this.documentService.currentDocument.subscribe(doc => this.currentDoc = doc.id);
   }
 
-  ngOnDestroy(): void {
+  ngOnDestroy() {
     this._docSub.unsubscribe();
   }
 
-  loadDoc(id: String) {
+  loadDoc(id: string) {
     this.documentService.getDocument(id);
   }
 
