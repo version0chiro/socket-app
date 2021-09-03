@@ -8,21 +8,29 @@ import { DocumentService } from 'src/app/services/document.service';
 @Component({
   selector: 'app-document',
   templateUrl: './document.component.html',
-  styleUrls: ['./document.component.scss']
+  styleUrls: ['./document.component.scss'],
 })
 export class DocumentComponent implements OnInit, OnDestroy {
   document: Document;
   private _docSub: Subscription;
 
-  constructor(private documentService: DocumentService) { 
+  constructor(private documentService: DocumentService) {
     this.document = new Document();
     this._docSub = new Subscription();
   }
 
   ngOnInit() {
-    this._docSub = this.documentService.currentDocument.pipe(
-      startWith({ id: '', doc: 'Select an existing document or create a new one to get started' })
-    ).subscribe(document => this.document = document);
+    this._docSub = this.documentService.currentDocument
+      .pipe(
+        startWith({
+          id: '',
+          doc: 'Select an existing document or create a new one to get started',
+        })
+      )
+      .subscribe((document) => {
+        this.document = document;
+        console.log(document);
+      });
   }
 
   ngOnDestroy() {
