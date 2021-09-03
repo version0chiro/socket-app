@@ -1,4 +1,4 @@
 export class Document {
-  id: string;
-  doc: string;
+  id: String | undefined;
+  doc: String | undefined;
 }
