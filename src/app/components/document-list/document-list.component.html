@@ -1,1 +1,10 @@
-<p>document-list works!</p>
+<div class="sidenav">
+  <span (click)="newDoc()">New Document</span>
+  <span
+    *ngFor="let docId of documents | async"
+    [class.selected]="docId == currentDoc"
+    (click)="loadDoc(docId)"
+  >
+    {{ docId }}
+  </span>
+</div>
