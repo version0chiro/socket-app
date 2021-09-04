@@ -29,7 +29,7 @@ export class DocumentComponent implements OnInit, OnDestroy {
       )
       .subscribe((document) => {
         this.document = document;
-        console.log(document);
+        // console.log('from subscribe', document);
       });
   }
 

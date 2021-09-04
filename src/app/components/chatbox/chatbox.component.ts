@@ -11,21 +11,36 @@ import { DocumentService } from 'src/app/services/document.service';
   styleUrls: ['./chatbox.component.scss'],
 })
 export class ChatboxComponent implements OnInit {
-  currentMessage: string;
-  message: Message;
+  currentMessage: Message;
+  messages: Message[];
   private _docSub: Subscription;
 
   constructor(private documentService: DocumentService) {
-    this.currentMessage = '';
-    this.message = new Message();
+    this.currentMessage = new Message();
+    this.messages = [];
     this._docSub = new Subscription();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this._docSub = this.documentService.lastMessage
+      .pipe(
+        startWith({
+          id: '',
+          content: '',
+        })
+      )
+      .subscribe((msg) => {
+        this.currentMessage.id = msg.id;
+        this.messages = [...this.messages, msg];
+        console.log(this.messages);
+        
+      });
+  }
 
   sendMessage() {
-    this.message.content = this.currentMessage;
-    this.documentService.sendMessage(this.message);
+    console.log(this.currentMessage);
+    // this.message.content = this.currentMessage.content;
+    this.documentService.sendMessage(this.currentMessage);
   }
 
   getMessages(id: string) {

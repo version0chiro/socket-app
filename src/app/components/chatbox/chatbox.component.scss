@@ -4,6 +4,7 @@
   z-index: 1;
   right: 0;
   top: 0;
+  height: 100%;
   border: 1px solid black;
 
   background-color: #f1f1f1;
@@ -18,7 +19,31 @@
 
     font-family: "Roboto", sans-serif, Arial;
   }
+
+  .messages {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  footer {
+    bottom: 0;
+  }
+  .message-set {
+    margin-top: auto;
+    display: flex;
+    padding: 10px;
+    input {
+      padding: 10px;
+    }
+  }
 }
 p {
   color: pink;
+}
+
+.chatbox {
+  display: flex;
+  flex-direction: column;
+  align-content: space-between;
+  position: fixed;
+  bottom: 0;
 }

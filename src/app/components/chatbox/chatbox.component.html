@@ -1,4 +1,27 @@
 <div class="sidenav">
-    <header class="header">Chat Here With People Sharing The Document</header>
+  <header class="header">Chat Here With People Sharing The Document</header>
   <p>chatbox works! nothing is coming up</p>
+
+  <div class="chatbox">
+    <div class="messages">
+      <div>"Something"</div>
+      <div>"Something 2"</div>
+      <div>"Something 3"</div>
+    </div>
+    <footer>
+      <form>
+        <div class="message-set">
+          <input
+            [(ngModel)]="currentMessage.content"
+            type="text"
+            name="message"
+            placeholder="Type a message..."
+          />
+          <br />
+          <button (click)="sendMessage()">Send</button>
+          <!-- <input type="submit" value="Send" (click)="sendMessage()" /> -->
+        </div>
+      </form>
+    </footer>
+  </div>
 </div>

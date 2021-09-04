@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 import { Document } from 'src/app/models/document.model';
+import { Message } from 'src/app/models/message';
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +9,8 @@ import { Document } from 'src/app/models/document.model';
 export class DocumentService {
   currentDocument = this.socket.fromEvent<Document>('document');
   documents = this.socket.fromEvent<string[]>('documents');
+  messages = this.socket.fromEvent<Message[]>('messages');
+  lastMessage = this.socket.fromEvent<Message>('message');
 
   constructor(private socket: Socket) {}
 
@@ -21,7 +24,7 @@ export class DocumentService {
 
   editDocument(document: Document) {
     console.log(document);
-    
+
     this.socket.emit('editDoc', document);
   }
 
@@ -35,5 +38,13 @@ export class DocumentService {
     }
 
     return text;
+  }
+
+  sendMessage(message: Message) {
+    this.socket.emit('SendMessage', message);
+  }
+
+  getMessages(id: string) {
+    this.socket.emit('getMessages', id);
   }
 }
