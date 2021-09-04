@@ -7,11 +7,12 @@ import { DocumentComponent } from './components/document/document.component';
 
 import { FormsModule } from '@angular/forms';
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { ChatboxComponent } from './components/chatbox/chatbox.component';
 
 const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
 
 @NgModule({
-  declarations: [AppComponent, DocumentListComponent, DocumentComponent],
+  declarations: [AppComponent, DocumentListComponent, DocumentComponent, ChatboxComponent],
   imports: [BrowserModule, FormsModule, SocketIoModule.forRoot(config)],
   providers: [],
   bootstrap: [AppComponent],

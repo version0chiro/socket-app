@@ -20,6 +20,8 @@ export class DocumentService {
   }
 
   editDocument(document: Document) {
+    console.log(document);
+    
     this.socket.emit('editDoc', document);
   }
 
