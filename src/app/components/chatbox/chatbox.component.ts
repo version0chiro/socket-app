@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { startWith } from 'rxjs/operators';
 
@@ -9,6 +9,7 @@ import { DocumentService } from 'src/app/services/document.service';
   selector: 'app-chatbox',
   templateUrl: './chatbox.component.html',
   styleUrls: ['./chatbox.component.scss'],
+  changeDetection: ChangeDetectionStrategy.Default,
 })
 export class ChatboxComponent implements OnInit {
   currentMessage: Message;
@@ -28,15 +29,12 @@ export class ChatboxComponent implements OnInit {
       this.messages = [msg];
       this.setMsg = msg;
       console.log(msg);
-      console.log(this.messages )
+      console.log(this.messages);
     });
   }
 
   sendMessage() {
-    // console.log(this.documentService.id)
-    // this.currentMessage.id = this.documentService.currentDocument.;
-    // console.log(this.currentMessage);
-    // this.message.content = this.currentMessage.content;
+    this.messages.push(this.currentMessage);
     this.documentService.sendMessage(this.currentMessage);
   }
 
