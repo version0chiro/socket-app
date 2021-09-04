@@ -4,8 +4,11 @@
 
   <div class="chatbox">
     <div class="messages">
-      <span *ngFor='let message of messages'>
-        {{message.content}}
+      <span *ngFor="let message of messages[0].content">
+        <div class="messagesSet">
+          {{ message }}
+          <br />
+        </div>
       </span>
     </div>
     <footer>

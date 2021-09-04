@@ -13,6 +13,7 @@ import { DocumentService } from 'src/app/services/document.service';
 export class ChatboxComponent implements OnInit {
   currentMessage: Message;
   messages: Message[];
+  setMsg: any;
   private _docSub: Subscription;
 
   constructor(private documentService: DocumentService) {
@@ -22,11 +23,12 @@ export class ChatboxComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._docSub = this.documentService.lastMessage
-    .subscribe((msg) => {
+    this._docSub = this.documentService.lastMessage.subscribe((msg) => {
       this.currentMessage.id = msg.id;
-      this.messages = [...this.messages, msg];
+      this.messages = [msg];
+      this.setMsg = msg;
       console.log(msg);
+      console.log(this.messages )
     });
   }
 
