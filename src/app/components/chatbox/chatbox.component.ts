@@ -23,22 +23,17 @@ export class ChatboxComponent implements OnInit {
 
   ngOnInit(): void {
     this._docSub = this.documentService.lastMessage
-      .pipe(
-        startWith({
-          id: '',
-          content: '',
-        })
-      )
-      .subscribe((msg) => {
-        this.currentMessage.id = msg.id;
-        this.messages = [...this.messages, msg];
-        console.log(this.messages);
-        
-      });
+    .subscribe((msg) => {
+      this.currentMessage.id = msg.id;
+      this.messages = [...this.messages, msg];
+      console.log(msg);
+    });
   }
 
   sendMessage() {
-    console.log(this.currentMessage);
+    // console.log(this.documentService.id)
+    // this.currentMessage.id = this.documentService.currentDocument.;
+    // console.log(this.currentMessage);
     // this.message.content = this.currentMessage.content;
     this.documentService.sendMessage(this.currentMessage);
   }

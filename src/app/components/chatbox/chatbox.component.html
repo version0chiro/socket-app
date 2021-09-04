@@ -4,9 +4,9 @@
 
   <div class="chatbox">
     <div class="messages">
-      <div>"Something"</div>
-      <div>"Something 2"</div>
-      <div>"Something 3"</div>
+      <span *ngFor='let message of messages'>
+        {{message.content}}
+      </span>
     </div>
     <footer>
       <form>

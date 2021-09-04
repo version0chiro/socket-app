@@ -24,7 +24,6 @@ export class DocumentService {
 
   editDocument(document: Document) {
     console.log(document);
-
     this.socket.emit('editDoc', document);
   }
 
@@ -41,6 +40,7 @@ export class DocumentService {
   }
 
   sendMessage(message: Message) {
+    // console.log(message);
     this.socket.emit('SendMessage', message);
   }
 
